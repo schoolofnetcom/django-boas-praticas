@@ -1,15 +1,9 @@
-from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView, View, RedirectView, ListView, DetailView, CreateView, UpdateView, \
-    DeleteView, FormView
+from django.views.generic import TemplateView, RedirectView, FormView
 
-from django_intermediario_rev2 import settings
-from .models import Address, STATES_CHOICES
-from .forms import AddressForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -91,11 +85,6 @@ class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'my_app/home.html'
 
 
-class AddressListView(LoginRequiredMixin, ListView):
-    model = Address
-    template_name = 'my_app/address/list.html'
-
-
 # @login_required(login_url='/login')
 # def address_list(request):
 #     addresses = Address.objects.all()
@@ -103,26 +92,9 @@ class AddressListView(LoginRequiredMixin, ListView):
 #     return render(request, 'my_app/address/list.html', {'addresses': addresses})
 
 
-class AddressDetailView(LoginRequiredMixin, DetailView):
-    model = Address
-    template_name = 'my_app/address/detail.html'
-
-
 class FormSubmittedInContextMixin:
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form, form_submitted=True))
-
-
-class AddressCreateView(LoginRequiredMixin, FormSubmittedInContextMixin, CreateView):
-    model = Address
-    # fields = ['address', 'address_complement', 'city', 'state', 'country']
-    form_class = AddressForm
-    template_name = 'my_app/address/create.html'
-    success_url = reverse_lazy('my_app:address_list')
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
 
 # @login_required(login_url='/login')
@@ -141,14 +113,6 @@ class AddressCreateView(LoginRequiredMixin, FormSubmittedInContextMixin, CreateV
 #             return redirect(reverse('my_app:address_list'))
 #
 #     return render(request, 'my_app/address/create.html', {'form': form, 'form_submitted': form_submitted})
-
-
-class AddressUpdateView(LoginRequiredMixin, FormSubmittedInContextMixin, UpdateView):
-    model = Address
-    # fields = ['address', 'address_complement', 'city', 'state', 'country']
-    form_class = AddressForm
-    template_name = 'my_app/address/update.html'
-    success_url = reverse_lazy('my_app:address_list')
 
 
 # @login_required(login_url='/login')
@@ -176,11 +140,6 @@ class AddressUpdateView(LoginRequiredMixin, FormSubmittedInContextMixin, UpdateV
 #
 #     return render(request, 'my_app/address/update.html',
 #                   {'address': address, 'form': form, 'form_submitted': form_submitted})
-
-class AddressDeleteView(LoginRequiredMixin, DeleteView):
-    model = Address
-    template_name = 'my_app/address/destroy.html'
-    success_url = reverse_lazy('my_app:address_list')
 
 
 # @login_required(login_url='/login')

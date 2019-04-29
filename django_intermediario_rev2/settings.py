@@ -38,6 +38,15 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = []
 
 # Application definition
+# 4 apps | 6 apps | 3 apps
+# blog
+# site
+# admin
+# api
+# terminal
+# posts
+# tags
+# gallery
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -76,6 +85,10 @@ TEMPLATES = [
         },
     },
 ]
+
+FIXTURE_DIRS = (
+    os.path.join(BASE_DIR, 'fixtures'),
+)
 
 WSGI_APPLICATION = 'django_intermediario_rev2.wsgi.application'
 

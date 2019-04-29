@@ -1,0 +1,24 @@
+[
+  {
+    "model": "my_app.address",
+    "pk": 1,
+    "fields": {
+        "address": "Rua x",
+        "address_complement": "",
+        "city": "Minha cidade",
+        "country": "Brasil",
+        "user": 1
+    }
+  },
+  {
+    "model": "my_app.address",
+    "pk": 2,
+    "fields": {
+        "address": "Rua y",
+        "address_complement": "",
+        "city": "Outra cidade",
+        "country": "Brasil",
+        "user": 1
+    }
+  }
+]

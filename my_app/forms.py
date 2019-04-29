@@ -1,5 +1,5 @@
 from django import forms
-from .models import STATES_CHOICES, Address
+from my_app.models.address import STATES_CHOICES, Address
 
 
 # class AddressForm(forms.Form):

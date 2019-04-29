@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Address
+from my_app.models.address import Address
 
 # Register your models here.
 admin.site.register(Address)

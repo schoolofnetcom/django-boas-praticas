@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+
+from my_app.views_ import address_views
 from . import views
 
 app_name = 'my_app'
@@ -29,14 +31,14 @@ urlpatterns = [
     #path('logout/', views.logout),
     path('home/', views.HomeView.as_view()),
     #path('home/', views.home),
-    path('addresses/', views.AddressListView.as_view(), name='address_list'),
+    path('addresses/', address_views.AddressListView.as_view(), name='address_list'),
     #path('addresses/', views.address_list, name='address_list'),
-    path('addresses/<int:pk>/detail', views.AddressDetailView.as_view(), name='address_detail'),
-    path('addresses/create/', views.AddressCreateView.as_view(), name='address_create'),
+    path('addresses/<int:pk>/detail', address_views.AddressDetailView.as_view(), name='address_detail'),
+    path('addresses/create/', address_views.AddressCreateView.as_view(), name='address_create'),
     #path('addresses/create/', views.address_create, name='address_create'),
-    path('addresses/<int:pk>/update/', views.AddressUpdateView.as_view(), name='address_update'),
+    path('addresses/<int:pk>/update/', address_views.AddressUpdateView.as_view(), name='address_update'),
     #path('addresses/<int:id>/update/', views.address_update, name='address_update'),
-    path('addresses/<int:pk>/destroy/', views.AddressDeleteView.as_view(), name='address_destroy'),
+    path('addresses/<int:pk>/destroy/', address_views.AddressDeleteView.as_view(), name='address_destroy'),
     #path('addresses/<int:id>/destroy/', views.address_destroy, name='address_destroy'),
 ]
 
